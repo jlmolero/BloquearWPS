@@ -1,0 +1,72 @@
+<AppLockerPolicy Version="1">
+  <RuleCollection Type="Exe" EnforcementMode="Enabled">
+    <FilePathRule Id="921cc481-6e17-4653-8f75-050b80acca20" Name="(Regla predeterminada) Todos los archivos de la carpeta Archivos de programa" Description="Permite a los miembros del grupo Todos ejecutar aplicaciones de la carpeta Archivos de programa." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%PROGRAMFILES%\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="a61c8b2c-a319-4cd0-9690-d2177cad7b51" Name="(Regla predeterminada) Todos los archivos de la carpeta Windows" Description="Permite a los miembros del grupo Todos ejecutar aplicaciones de la carpeta Windows." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="fd686d83-a829-4351-8ff4-27c7de5755d2" Name="(Regla predeterminada) Todos los archivos" Description="Permite a los miembros del grupo Administradores locales ejecutar todas las aplicaciones." UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePublisherRule Id="c1f5b24c-2612-4ed9-916e-94c690b78cb7" Name="(Regla Personalizada) Todos los Archivos firmados por el Creador de WPS Office" Description="" UserOrGroupSid="S-1-1-0" Action="Deny">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=ZHUHAI KINGSOFT OFFICE SOFTWARE CO., LTD., L=珠海市, S=广东省, C=CN" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+  </RuleCollection>
+  <RuleCollection Type="Msi" EnforcementMode="Enabled">
+    <FilePublisherRule Id="b7af7102-efde-4369-8a89-7a6a392d1473" Name="(Regla predeterminada) Todos los archivos de Windows Installer firmados digitalmente" Description="Permite a los miembros del grupo Todos ejecutar archivos de Windows Installer firmados digitalmente." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="*" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="0.0.0.0" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePathRule Id="5b290184-345a-4453-b184-45305f6d9a54" Name="(Regla predeterminada) Todos los archivos de Windows Installer del directorio %systemdrive%\Windows\Installer" Description="Permite a los miembros del grupo Todos ejecutar todos los archivos de Windows Installer del directorio %systemdrive%\Windows\Installer." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\Installer\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="64ad46ff-0d71-4fa0-a30b-3f3d30c5433d" Name="(Regla predeterminada) Todos los archivos de Windows Installer" Description="Permite a los miembros del grupo Administradores local ejecutar todos los archivos de Windows Installer." UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*.*" />
+      </Conditions>
+    </FilePathRule>
+  </RuleCollection>
+  <RuleCollection Type="Script" EnforcementMode="Enabled">
+    <FilePathRule Id="06dce67b-934c-454f-a263-2515c8796a5d" Name="(Regla predeterminada) Todos los scripts de la carpeta Archivos de programa" Description="Permite a los miembros del grupo Todos ejecutar los scripts ubicados en la carpeta Archivos de programa." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%PROGRAMFILES%\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="9428c672-5fc3-47f4-808a-a0011f36dd2c" Name="(Regla predeterminada) Todos los scripts de la carpeta Windows" Description="Permite a los miembros del grupo Todos ejecutar los scripts ubicados en la carpeta Windows." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="ed97d0cb-15ff-430f-b82c-8d7832957725" Name="(Regla predeterminada) Todos los scripts" Description="Permite a los miembros del grupo Administradores local ejecutar todos los scripts." UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*" />
+      </Conditions>
+    </FilePathRule>
+  </RuleCollection>
+  <RuleCollection Type="Dll" EnforcementMode="NotConfigured" />
+  <RuleCollection Type="Appx" EnforcementMode="Enabled">
+    <FilePublisherRule Id="a9e18c21-ff8f-43cf-b9fc-db40eed693ba" Name="(Regla predeterminada) Todas las aplicaciones empaquetadas firmadas" Description="Permitir a los miembros del grupo Todos ejecutar aplicaciones empaquetadas que estén firmadas." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="*" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="0.0.0.0" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+  </RuleCollection>
+</AppLockerPolicy>

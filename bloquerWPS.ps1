@@ -1,32 +1,34 @@
 param(
     # Specifies the name of the rule set to apply. Corresponds to an XML file in the 'rules' folder.
-    [string]$RuleSet = "default"
+    [string]$RuleSet = "bloquearWPS"
 )
 
 # This script manages AppLocker rules to block WPS Office.
 
-# Configure and start the Application Identity service (AppIDSvc).
-# This service is essential for AppLocker to function.
-# Set the service to start automatically with the system.
-Set-Service -Name AppIDSvc -StartupType Automatic
+# Establecemos el valor para el inicio del servicio AppIDSvc 2: automatic, 3: manual
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\AppIDSvc" -Name "Start" -Value 2
+
 # Start the service if it's not already running.
 Start-Service -Name AppIDSvc
 
 # Backup existing AppLocker rules
-# The Get-AppLockerPolicy cmdlet gets the local AppLocker policy.
-# The Export-Clixml cmdlet creates an XML-based representation of the object or objects and stores it in a file.
-Get-AppLockerPolicy -Local | Export-Clixml -Path "rules-backup.xml"
-
+$timestamp = Get-Date -Format "yyMMddHHmmss"
+$backupFile = "rules-backup-$timestamp.xml"
+Get-AppLockerPolicy -Local -XML > $backupFile
 # Clear all existing AppLocker rules
 # A new, empty AppLocker policy object is created.
-$emptyPolicy = New-Object Microsoft.Security.ApplicationId.Policy.PolicyObjectModel
+
+#$emptyPolicy = New-Object Microsoft.Security.ApplicationId.Policy.PolicyObjectModel
+
 # The Set-AppLockerPolicy cmdlet sets the AppLocker policy.
 # By providing an empty policy object, we effectively remove all existing rules.
-Set-AppLockerPolicy -PolicyObject $emptyPolicy
+
+#Set-AppLockerPolicy -PolicyObject $emptyPolicy
 
 # Apply new rules from the specified XML file
 # Construct the path to the rule file based on the script's location and the RuleSet parameter.
 $ruleFile = Join-Path -Path $PSScriptRoot -ChildPath "rules/$($RuleSet).xml"
+Write-Host $ruleFile
 
 # Verify that the selected rule file exists before attempting to apply it.
 if (-not (Test-Path -Path $ruleFile)) {
