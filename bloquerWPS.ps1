@@ -27,7 +27,7 @@ if (-not $RuleSet) {
     }
 
     # Pedir al usuario su elección.
-    $choice = Read-Host "Introduzca el número de su elección"
+    $choice = Read-Host "Introduzca el numero de la plantilla de reglas que desea implementar"
     # Validar la entrada del usuario.
     if ($choice -match '^\d+$' -and [int]$choice -ge 1 -and [int]$choice -le $ruleNames.Count) {
         # Asignar el conjunto de reglas seleccionado.
@@ -76,4 +76,5 @@ if (-not (Test-Path -Path $ruleFile)) {
 Set-AppLockerPolicy -XMLPolicy $ruleFile
 
 Write-Host "Successfully applied AppLocker rules from '$ruleFile'." -ForegroundColor Green
-Write-Host "Recuerde ejecutar el comando Set-ExecutionPolicy Restricted." -ForegroundColor Blue
+
+Write-Host "Recuerde ejecutar el comando Set-ExecutionPolicy Restricted." -ForegroundColor Yellow
