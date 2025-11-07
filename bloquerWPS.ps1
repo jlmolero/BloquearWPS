@@ -4,6 +4,7 @@ param(
 )
 
 # This script manages AppLocker rules to block WPS Office.
+# Debe ejecutarse en powershell con privilegios de administrador
 
 # Si no se proporciona un RuleSet, se listan los disponibles y se le pide al usuario que elija uno.
 if (-not $RuleSet) {
