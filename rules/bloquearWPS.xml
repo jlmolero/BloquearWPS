@@ -1,5 +1,29 @@
 <AppLockerPolicy Version="1">
+  <RuleCollection Type="Appx" EnforcementMode="Enabled">
+    <FilePublisherRule Id="a9e18c21-ff8f-43cf-b9fc-db40eed693ba" Name="(Regla predeterminada) Todas las aplicaciones empaquetadas firmadas" Description="Permitir a los miembros del grupo Todos ejecutar aplicaciones empaquetadas que estén firmadas." UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePublisherCondition PublisherName="*" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="0.0.0.0" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+  </RuleCollection>
+  <RuleCollection Type="Dll" EnforcementMode="NotConfigured" />
   <RuleCollection Type="Exe" EnforcementMode="Enabled">
+    <FilePublisherRule Id="300eaa1e-ce3d-4481-bdb3-e5f5746c222a" Name="Firmado por O=WPS SOFTWARE PTE. LTD., L=SINGAPORE, C=SG" Description="" UserOrGroupSid="S-1-1-0" Action="Deny">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=WPS SOFTWARE PTE. LTD., L=SINGAPORE, C=SG" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
+    <FilePublisherRule Id="c1f5b24c-2612-4ed9-916e-94c690b78cb7" Name="(Regla Personalizada) Todos los Archivos firmados por el Creador de WPS Office" Description="" UserOrGroupSid="S-1-1-0" Action="Deny">
+      <Conditions>
+        <FilePublisherCondition PublisherName="O=ZHUHAI KINGSOFT OFFICE SOFTWARE CO., LTD., L=珠海市, S=广东省, C=CN" ProductName="*" BinaryName="*">
+          <BinaryVersionRange LowSection="*" HighSection="*" />
+        </FilePublisherCondition>
+      </Conditions>
+    </FilePublisherRule>
     <FilePathRule Id="921cc481-6e17-4653-8f75-050b80acca20" Name="(Regla predeterminada) Todos los archivos de la carpeta Archivos de programa" Description="Permite a los miembros del grupo Todos ejecutar aplicaciones de la carpeta Archivos de programa." UserOrGroupSid="S-1-1-0" Action="Allow">
       <Conditions>
         <FilePathCondition Path="%PROGRAMFILES%\*" />
@@ -15,13 +39,6 @@
         <FilePathCondition Path="*" />
       </Conditions>
     </FilePathRule>
-    <FilePublisherRule Id="c1f5b24c-2612-4ed9-916e-94c690b78cb7" Name="(Regla Personalizada) Todos los Archivos firmados por el Creador de WPS Office" Description="" UserOrGroupSid="S-1-1-0" Action="Deny">
-      <Conditions>
-        <FilePublisherCondition PublisherName="O=ZHUHAI KINGSOFT OFFICE SOFTWARE CO., LTD., L=珠海市, S=广东省, C=CN" ProductName="*" BinaryName="*">
-          <BinaryVersionRange LowSection="*" HighSection="*" />
-        </FilePublisherCondition>
-      </Conditions>
-    </FilePublisherRule>
   </RuleCollection>
   <RuleCollection Type="Msi" EnforcementMode="Enabled">
     <FilePublisherRule Id="b7af7102-efde-4369-8a89-7a6a392d1473" Name="(Regla predeterminada) Todos los archivos de Windows Installer firmados digitalmente" Description="Permite a los miembros del grupo Todos ejecutar archivos de Windows Installer firmados digitalmente." UserOrGroupSid="S-1-1-0" Action="Allow">
@@ -58,15 +75,5 @@
         <FilePathCondition Path="*" />
       </Conditions>
     </FilePathRule>
-  </RuleCollection>
-  <RuleCollection Type="Dll" EnforcementMode="NotConfigured" />
-  <RuleCollection Type="Appx" EnforcementMode="Enabled">
-    <FilePublisherRule Id="a9e18c21-ff8f-43cf-b9fc-db40eed693ba" Name="(Regla predeterminada) Todas las aplicaciones empaquetadas firmadas" Description="Permitir a los miembros del grupo Todos ejecutar aplicaciones empaquetadas que estén firmadas." UserOrGroupSid="S-1-1-0" Action="Allow">
-      <Conditions>
-        <FilePublisherCondition PublisherName="*" ProductName="*" BinaryName="*">
-          <BinaryVersionRange LowSection="0.0.0.0" HighSection="*" />
-        </FilePublisherCondition>
-      </Conditions>
-    </FilePublisherRule>
   </RuleCollection>
 </AppLockerPolicy>
